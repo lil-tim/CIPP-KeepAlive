@@ -1,0 +1,3 @@
+- name: Send HTTP request to Azure Function
+  run: |
+    curl -s -o /dev/null -w "%{http_code}" https://cipp.logicalit.co.nz/api/PublicPing
