@@ -1,0 +1,15 @@
+name: Keep Azure Function Warm
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+  workflow_dispatch:       # Allows manual triggering
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send HTTP request to Azure Function
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" https://cipp.logicalit.co.nz/api/PublicPing
